@@ -89,4 +89,16 @@ def generate_keyobject_from_raw(raw_key):
 	return key
 
 
+def capsule_to_bytes(capsule_object):
+
+	return capsul_object.to_bytes()
+
+
+def bytes_to_capsule(raw_bytes):
+
+	capsule = pre.capsule.from_bytes(raw_bytes)
+
+	return capsule
+
+
 
