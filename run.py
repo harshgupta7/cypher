@@ -3,6 +3,11 @@ from umbral import keys, pre
 # alices_private_key = keys.UmbralPrivateKey.gen_key()
 # alices_public_key = alices_private_key.get_pubkey()
 
+# print (type(alices_private_key))
+# print (type(alices_public_key))
+
+# print(type(alices_public_key)==keys.UmbralPublicKey)
+
 
 # plaintext = b'Proxy Re-encryption is cool!'
 
@@ -56,9 +61,12 @@ def encrypt_message(receiver_pub_key, plaintext, sender_priv_key):
 
 	kfrags = pre.split_rekey(sender_priv_key, receiver_pub_key, 10, 20)
 
-	for kfrag in kfrags:
-    	cfrag = pre.reencrypt(kfrag, capsule)
-    	capsule.attach_cfrag(cfrag)
+	for k in kfrags:
+
+		cfrag = pre.reencrypt(kfrag, capsule)
+		capsule.attach_cfrag(cfrag)
+
+
 
 	return ciphertext, capsule
 
@@ -79,8 +87,6 @@ def generate_keyobject_from_raw(raw_key):
 
 	key = keys.UmbralPrivateKey.from_bytes(raw_key)
 	return key
-
-
 
 
 
